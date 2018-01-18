@@ -1,13 +1,14 @@
 all: main.pdf
 
-main.pdf: main.tex ACMSTY GRAPHs \
+main.pdf: main.tex ACMART GRAPHs \
 $(wildcard ./sections/*.tex) $(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf)
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 
-.PHONY: ACMSTY
-ACMSTY:
-	@cd acmsty; make all
+.PHONY: ACMART
+ACMART:
+	@cd acmart; make all
+	@cp acmart/acmart.cls .
 
 .PHONY: GRAPHs
 GRAPHs:
@@ -22,5 +23,5 @@ clean:
 
 .PHONY: dist-clean
 dist-clean: clean
-	@cd acmsty; make clean
+	@cd acmart; make clean
 
