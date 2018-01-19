@@ -1,14 +1,9 @@
 all: main.pdf
 
-main.pdf: main.tex ACMART GRAPHs \
+main.pdf: main.tex GRAPHs \
 $(wildcard ./sections/*.tex) $(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf)
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<
-
-.PHONY: ACMART
-ACMART:
-	@cd acmart; make all
-	@cp acmart/acmart.cls .
 
 .PHONY: GRAPHs
 GRAPHs:
@@ -21,8 +16,7 @@ clean:
 	      *.synctex.gz
 	@cd graphs; make clean
 
-.PHONY: dist-clean
-dist-clean: clean
-	$(RM) acmart.cls
-	@cd acmart; make clean
-
+.PHONY: style-upgrade
+style-upgrade:
+	@cd acmart; git pull; make all
+	@cp acmart/acmart.cls .
