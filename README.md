@@ -1,2 +1,2 @@
-# Acmart-Template
-Latex template based on acmart: https://github.com/borisveytsman/acmart.
+# Acmart-Sigconf
+Latex template based on acmart-sigconf: https://github.com/borisveytsman/acmart.
