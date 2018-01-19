@@ -18,5 +18,5 @@ clean:
 
 .PHONY: style-upgrade
 style-upgrade:
-	@cd acmart; git pull; make all
+	@cd acmart; git checkout master; make all
 	@cp acmart/acmart.cls .
