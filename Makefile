@@ -20,9 +20,9 @@ clean:
 	      *.synctex.gz
 	@cd graphs; make clean
 
-.PHONY: dist-upgrade
-dist-upgrade:
-	@cd acmart; make all
+.PHONY: style-upgrade
+style-upgrade:
+	@cd acmart; git pull; make all
 	@cp acmart/acmart.cls \
 	    acmart/ACM-Reference-Format.bst .
 
