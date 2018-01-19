@@ -1,14 +1,13 @@
 all: main.pdf
 
-main.pdf: main.tex ACMART GRAPHs \
+main.pdf: main.tex main.aux GRAPHs \
 $(wildcard ./sections/*.tex) $(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf)
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 
-.PHONY: ACMART
-ACMART:
-	@cd acmart; make all
-	@cp acmart/acmart.cls .
+main.aux: main.tex bibliography.bib
+	pdflatex -synctex=1 -interaction=nonstopmode $<
+	bibtex $@
 
 .PHONY: GRAPHs
 GRAPHs:
@@ -21,8 +20,9 @@ clean:
 	      *.synctex.gz
 	@cd graphs; make clean
 
-.PHONY: dist-clean
-dist-clean: clean
-	$(RM) acmart.cls
-	@cd acmart; make clean
+.PHONY: dist-upgrade
+dist-upgrade:
+	@cd acmart; make all
+	@cp acmart/acmart.cls \
+	    acmart/ACM-Reference-Format.bst .
 
