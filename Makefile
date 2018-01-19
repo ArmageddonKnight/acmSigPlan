@@ -23,5 +23,6 @@ clean:
 
 .PHONY: dist-clean
 dist-clean: clean
+	$(RM) acmart.cls
 	@cd acmart; make clean
 

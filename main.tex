@@ -2,6 +2,10 @@
 
 \usepackage{booktabs} % For formal tables
 
+% \pagestyle{plain} % Removes running headers
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+
 % Copyright
 %\setcopyright{none}
 %\setcopyright{acmcopyright}
@@ -19,7 +23,8 @@
 \acmISBN{}
 
 %Conference
-\acmConference[CSCD70 H3]{Compiler Optimization}{Winter 2018}{University of Toronto}
+\acmConference[CSCD70 H3]{Compiler Optimization}
+{Winter 2018}{University of Toronto}
 \acmYear{2018}
 \copyrightyear{2018}
 
