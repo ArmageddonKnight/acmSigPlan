@@ -1,11 +1,15 @@
 all: main.pdf
 
-main.pdf: main.tex $(wildcard ./sections/*.tex) \
+main.pdf: main.tex main.aux $(wildcard ./sections/*.tex) \
 $(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf) \
 $(subst  .gv,.pdf,$(wildcard ./graphs/*.gv)) \
 $(subst .dot,.pdf,$(wildcard ./graphs/*.dot))
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<
+
+main.aux: main.tex bibliography.bib
+	pdflatex -synctex=1 -interaction=nonstopmode $<
+	bibtex $@
 
 ./graphs/%.pdf: ./graphs/%.gv
 	dot -Tpdf $< -o $@
@@ -25,4 +29,5 @@ clean:
 .PHONY: style-upgrade
 style-upgrade:
 	@cd acmart; git checkout origin/master; make all
-	@cp acmart/acmart.cls .
+	@cp acmart/acmart.cls \
+	    acmart/ACM-Reference-Format.bst .
