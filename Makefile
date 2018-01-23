@@ -16,7 +16,9 @@ $(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf) $(wildcard ./graphs/*.pdf
 .PHONY: clean
 clean:
 	find . \( -name "*.aux" -o -name "*.bbl" -o -name "*.blg" -o \
-	          -name "*.log" -o -name "*.out" -o -name "*.synctex.gz" \) | xargs $(RM)
+	          -name "*.log" -o -name "*.out" -o -name "*.synctex.gz" \) -o \
+	       \( -name "*.pdf" -a -not -path "./images/*" \) | xargs $(RM)
+	$(RM) ./graphs/*.tex
 
 .PHONY: style-upgrade
 style-upgrade:
