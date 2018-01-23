@@ -1,7 +1,9 @@
 all: main.pdf
 
 main.pdf: main.tex $(wildcard ./sections/*.tex) \
-$(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf) $(wildcard ./graphs/*.pdf)
+$(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf) \
+$(subst  .gv,.pdf,$(wildcard ./graphs/*.gv)) \
+$(subst .dot,.pdf,$(wildcard ./graphs/*.dot))
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 
