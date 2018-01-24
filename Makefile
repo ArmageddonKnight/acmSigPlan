@@ -1,13 +1,13 @@
 all: main.pdf
 
-main.pdf: main.tex main.aux $(wildcard ./sections/*.tex) \
+main.pdf: main.tex main.aux acmart.cls $(wildcard ./sections/*.tex) \
 $(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf) \
 $(subst  .gv,.pdf,$(wildcard ./graphs/*.gv)) \
 $(subst .dot,.pdf,$(wildcard ./graphs/*.dot))
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 
-main.aux: main.tex bibliography.bib
+main.aux: main.tex bibliography.bib ACM-Reference-Format.bst
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	bibtex $@
 
@@ -23,7 +23,7 @@ main.aux: main.tex bibliography.bib
 clean:
 	find . \( -name "*.aux" -o -name "*.bbl" -o -name "*.blg" -o \
 	          -name "*.log" -o -name "*.out" -o -name "*.synctex.gz" \) -o \
-	       \( -name "*.pdf" -a -not -path "./images/*" \) | xargs $(RM)
+	       \( -name "*.pdf" -a -not -path "./images/*" -a -not -path "./acmart/*" \) | xargs $(RM)
 	$(RM) ./graphs/*.tex
 
 .PHONY: style-upgrade
