@@ -19,6 +19,7 @@ $(subst .dot,.pdf,$(wildcard ./graphs/*.dot))
 clean:
 	find . \( -name "*.aux" -o -name "*.bbl" -o -name "*.blg" -o \
 	          -name "*.log" -o -name "*.out" -o -name "*.synctex.gz" \) | xargs $(RM)
+	       \( -name "*.pdf" -a -not -path "./images/*" \) | xargs $(RM)
 	$(RM) ./graphs/*.tex
 
 .PHONY: style-upgrade
