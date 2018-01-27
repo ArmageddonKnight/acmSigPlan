@@ -28,6 +28,6 @@ clean:
 
 .PHONY: style-upgrade
 style-upgrade:
-	@cd acmart; git checkout origin/master; make all
+	@cd acmart; git checkout master; make all
 	@cp acmart/acmart.cls \
 	    acmart/ACM-Reference-Format.bst .
