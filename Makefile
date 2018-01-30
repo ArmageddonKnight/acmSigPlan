@@ -1,15 +1,13 @@
 all: main.pdf
 
-main.pdf: main.tex main.aux acmart.cls $(wildcard ./sections/*.tex) \
-$(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf) \
+%.pdf: %.tex bibliography.bib acmart.cls ACM-Reference-Format.bst \
+$(wildcard ./sections/*.tex) $(wildcard ./code-blocks/*) $(wildcard ./images/*.pdf) \
 $(subst  .gv,.pdf,$(wildcard ./graphs/*.gv)) \
 $(subst .dot,.pdf,$(wildcard ./graphs/*.dot))
 	pdflatex -synctex=1 -interaction=nonstopmode $<
+	bibtex $*.aux
 	pdflatex -synctex=1 -interaction=nonstopmode $<
-
-main.aux: main.tex bibliography.bib ACM-Reference-Format.bst
-	pdflatex -synctex=1 -interaction=nonstopmode $<
-	bibtex $@
+	pdflatex -synctex=1 -interaction=nonstopmode $<  
 
 ./graphs/%.pdf: ./graphs/%.gv
 	dot -Tpdf $< -o $@
