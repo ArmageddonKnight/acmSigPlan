@@ -1,11 +1,15 @@
 all: main.pdf
 
 %.pdf: %.tex bibliography.bib acmart.cls ACM-Reference-Format.bst \
-$(wildcard ./sections/*.tex) $(wildcard ./code-blocks/*) $(wildcard ./graphs/*)
+$(wildcard ./sections/*.tex) $(wildcard ./code-blocks/*) \
+$(wildcard ./graphs/*.pdf) $(subst .png,.pdf,$(wildcard ./graphs/*.png))
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	bibtex $*.aux
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<  
+
+./graphs/%.pdf: ./graphs/%.png
+	convert $< $@
 
 .PHONY: clean
 clean:
