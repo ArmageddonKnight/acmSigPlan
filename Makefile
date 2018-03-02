@@ -8,6 +8,7 @@ $(wildcard ./graphs/*.pdf) $(subst .png,.pdf,$(wildcard ./graphs/*.png))
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<  
 
+$(subst .png,.pdf,$(wildcard ./graphs/*.png))
 ./graphs/%.pdf: ./graphs/%.png
 	convert $< $@
 
