@@ -1,4 +1,4 @@
-all: $(subst .png,.pdf,*.png)
+all: $(subst .png,.pdf,$(wildcard *.png))
 
 %.pdf: %.png
 	convert $< $@
