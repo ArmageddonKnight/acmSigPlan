@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2018/04/05 v1.51 Typesetting articles for the Association for
+[2018/04/14 v1.53 Typesetting articles for the Association for
 Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
@@ -791,6 +791,7 @@ Computing Machinery]
   JERIC,%
   JETC,%
   JOCCH,%
+  PACMCGIT,%
   PACMHCI,%
   PACMPL,%
   POMACS,%
@@ -801,10 +802,12 @@ Computing Machinery]
   TALLIP,%
   TAP,%
   TCPS,%
+  TDSCI,%
   TEAC,%
   TECS,%
   THRI,%
   TIIS,%
+  TIOT,%
   TISSEC,%
   TIST,%
   TKDD,%
@@ -878,6 +881,12 @@ Computing Machinery]
 \or % JOCCH
   \def\@journalName{ACM Journal on Computing and Cultural Heritage}%
   \def\@journalNameShort{ACM J. Comput. Cult. Herit.}%
+\or % PACMCGIT
+  \def\@journalName{Proceedings of the ACM on Computer Graphics and Interactive Techniques}%
+  \def\@journalNameShort{Proc. ACM Comput. Graph. Interact. Tech.}%
+  \def\@permissionCodeOne{2577-6193}%
+  \@ACM@screentrue
+  \PackageInfo{\@classname}{Using screen mode due to \@journalCode}%
 \or % PACMHCI
   \def\@journalName{Proceedings of the ACM on Human-Computer Interaction}%
   \def\@journalNameShort{Proc. ACM Hum.-Comput. Interact.}%
@@ -919,6 +928,10 @@ Computing Machinery]
   \def\@journalName{ACM Transactions on Applied Perception}%
 \or % TCPS
   \def\@journalName{ACM Transactions on Cyber-Physical Systems}%
+\or % TDSCI
+  \def\@journalName{ACM Transactions on Data Science}%
+  \def\@journalNameShort{ACM Trans. Data Sci.}%
+  \def\@permissionCodeOne{2577-3224}%
 \or % TEAC
   \def\@journalName{ACM Transactions on Economics and Computation}%
 \or % TECS
@@ -933,6 +946,10 @@ Computing Machinery]
   \def\@journalName{ACM Transactions on Interactive Intelligent Systems}%
   \def\@journalNameShort{ACM Trans. Interact. Intell. Syst.}%
   \def\@permissionCodeOne{2160-6455}%
+\or % TIOT
+  \def\@journalName{ACM Transactions on Internet of Things}%
+  \def\@journalNameShort{ACM Trans. Internet Things}%
+  \def\@permissionCodeOne{2577-6207}%
 \or % TISSEC
   \def\@journalName{ACM Transactions on Information and System Security}%
   \def\@journalNameShort{ACM Trans. Info. Syst. Sec.}%
@@ -1410,10 +1427,10 @@ Computing Machinery]
   ACM\@.
   \or % ic2w3www
   IW3C2 (International World Wide Web Conference Committee), published
-  under Creative Commons CC~BY~4.0 License.
+  under Creative Commons CC-BY~4.0 License.
   \or % ic2w3wwwgoogle
   IW3C2 (International World Wide Web Conference Committee), published
-  under Creative Commons CC~BY-NC-ND~4.0 License.
+  under Creative Commons CC-BY-NC-ND~4.0 License.
   \fi}
 \def\@formatdoi#1{\url{https://doi.org/#1}}
 \def\@copyrightpermission{%
@@ -1529,13 +1546,13 @@ Computing Machinery]
    only.
  \or % iw3c2w3
    This paper is published under the Creative Commons Attribution~4.0
-   International (CC~BY~4.0) license. Authors reserve their rights to
+   International (CC-BY~4.0) license. Authors reserve their rights to
    disseminate the work on their personal and corporate Web sites with
    the appropriate attribution.
  \or % iw3c2w3g
    This paper is published under the Creative Commons
    Attribution-NonCommercial-NoDerivs~4.0 International
-   (CC~BY-NC-ND~4.0) license. Authors reserve their rights to
+   (CC-BY-NC-ND~4.0) license. Authors reserve their rights to
    disseminate the work on their personal and corporate Web sites with
    the appropriate attribution.
  \fi}
