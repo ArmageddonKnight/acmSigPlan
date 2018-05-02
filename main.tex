@@ -101,7 +101,9 @@
 
 Sample reference \citep{lamport:latex}.
 
-\def\UrlBreaks{\do\/\do-}
+\makeatletter
+\g@addto@macro{\UrlBreaks}{\UrlOrds}
+\makeatother
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{bibliography}
 
