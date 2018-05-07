@@ -16,4 +16,6 @@ clean:
 style-upgrade:
 	@cd acmart; git pull; make clean; make acmart.cls
 	@cp acmart/acmart.cls \
-	    acmart/ACM-Reference-Format.bst .
+	    acmart/ACM-Reference-Format.bst \
+	    acmart/sample-bibliography.bib .
+	@mv sample-bibliography.bib bibliography.bib
