@@ -1,10 +1,12 @@
 all: main.pdf
 
-%.pdf: %.tex bibliography.bib $(wildcard ./sections/*.tex) $(wildcard ./code-blocks/*) $(wildcard ./graphs/*.pdf)
+%.pdf: %.tex
 	pdflatex -synctex=1 -interaction=nonstopmode $<
-	bibtex $*.aux
-	pdflatex -synctex=1 -interaction=nonstopmode $<
-	pdflatex -synctex=1 -interaction=nonstopmode $<  
+	@if [ -f bibliography.bib ]; then \
+		bibtex $*.aux; \
+		pdflatex -synctex=1 -interaction=nonstopmode $<; \
+		pdflatex -synctex=1 -interaction=nonstopmode $<; \
+	fi
 
 .PHONY: clean
 clean:
