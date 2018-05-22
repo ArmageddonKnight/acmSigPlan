@@ -1,10 +1,14 @@
 all: main.pdf
 
-%.pdf: %.tex
-	@if [ -f bibliography.bib ]; then \
-		pdflatex -synctex=1 -interaction=nonstopmode $<; \
-		bibtex $*.aux; \
-	fi
+BIBTEX_FILEs := $(wildcard *.bib)
+GRAPHs := $(wildcard ./graphs/*)
+CODE_BLOCKs := $(wildcard ./code_blocks/*)
+
+%.pdf: %.tex $(BIBTEX_FILEs) $(GRAPHs) $(CODE_BLOCKs)
+ifneq ($(BIBTEX_FILEs),)
+	pdflatex -synctex=1 -interaction=nonstopmode $<
+	bibtex $*.aux
+endif
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 
