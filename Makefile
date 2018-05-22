@@ -1,12 +1,12 @@
 all: main.pdf
 
 %.pdf: %.tex
-	pdflatex -synctex=1 -interaction=nonstopmode $<
 	@if [ -f bibliography.bib ]; then \
+		pdflatex -synctex=1 -interaction=nonstopmode $<; \
 		bibtex $*.aux; \
-		pdflatex -synctex=1 -interaction=nonstopmode $<; \
-		pdflatex -synctex=1 -interaction=nonstopmode $<; \
 	fi
+	pdflatex -synctex=1 -interaction=nonstopmode $<
+	pdflatex -synctex=1 -interaction=nonstopmode $<
 
 .PHONY: clean
 clean:
