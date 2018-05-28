@@ -20,7 +20,5 @@ clean:
 
 .PHONY: style-upgrade
 style-upgrade:
-	@cd acmart; git checkout master && git pull; \
-		make clean; make acmart.cls
-	@cp acmart/acmart.cls \
-	    acmart/ACM-Reference-Format.bst .
+	git submodule update --init
+	cd acmart && make acmart.cls && cp acmart.cls ACM-Reference-Format.bst ..
