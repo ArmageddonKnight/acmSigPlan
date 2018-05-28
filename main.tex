@@ -1,22 +1,20 @@
-\documentclass[sigconf]{acmart}
-
-% \pagestyle{plain}                 % Remove running headers
-\settopmatter{printfolios=true}   % Print page numbers
-\settopmatter{printacmref=false}  % Remove Acmart reference
-\renewcommand\footnotetextcopyrightpermission[1]{} % Remove copyright footnote
+\documentclass[sigconf, nonacm]{acmart}
 
 \usepackage{soul}               % Underline
-\usepackage{booktabs}           % Formal Tables
-\usepackage{multirow}           % Multirow Table Cells
-\usepackage{tabularx}           % Advanced Tables
-\usepackage{tablefootnote}      % Table Footnotes
-\usepackage{fancyvrb}           % Fancy Verbatim
-\usepackage{amssymb}            % Math Symbols 
-\usepackage{amsfonts}           % Math Fonts
-\usepackage{listings}           % Source Code Listings
 \usepackage{afterpage}          % Blank Page
 \usepackage[inline]{enumitem}   % Inline Enumeration
+% Tables and Figures
+\usepackage{booktabs}           % Formal Tables
+\usepackage{tabularx}           % Advanced Tables
+\usepackage{multirow}           % Multirow Table Cells
+\usepackage{tablefootnote}      % Table Footnotes
 \usepackage[export]{adjustbox}  % Vertical Alignment
+% Monospaced Listings
+\usepackage{fancyvrb}           % Fancy Verbatim
+\usepackage{listings}           % Source Code Listings
+% AMS Math Packages
+\usepackage{amsmath}            % Advanced Math
+\usepackage{nicefrac}           % Nice Fraction
 
 \lstset{ %
   backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
