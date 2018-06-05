@@ -1,3 +1,0 @@
-[diff "pdf"]
-	textconv = pdf2txt
-	binary = true
