@@ -5,7 +5,11 @@
 The idea of **Polyhedral Optimization** is to first convert statement instances into points in vector space, which are rescheduled before converting back to statement instances. **Polyhedral Optimization** consists of the following steps:
 
 - **Iteration Domains** where statement instances are converted to points in multidimensional space.
+<<<<<<< HEAD
   - E.g., The Iteration Domain of the following code is given by <img src="https://rawgit.com/ArmageddonKnight/Acmart-Sigconf/master/svgs/7117e8d3f50474f1f3b91604cda316ae.svg?invert_in_darkmode" align=middle width=255.440955pt height=24.6576pt/>
+=======
+  - E.g., The Iteration Domain of the following code is given by <img src="/tex/7117e8d3f50474f1f3b91604cda316ae.svg?invert_in_darkmode&sanitize=true" align=middle width=255.44091705pt height=24.65753399999998pt/>
+>>>>>>> 6521420190d18791886d257fa264ffd9287881bd
   
   The **Iteration Domain** usually forms a convex polygon, and hence the name **Polyhedral Optimization**.
 
