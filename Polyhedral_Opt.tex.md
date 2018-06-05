@@ -32,3 +32,4 @@ for (unsigned i = 0; i < n; ++i)
 ## References
 
 - [**LLVM Polly**](http://perso.ens-lyon.fr/christophe.alias/impact2011/impact-07.pdf) with [tutorial slides](https://llvm.org/devmtg/2016-03/Tutorials/applied-polyhedral-compilation.pdf).
+- Some changes made.
