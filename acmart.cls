@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2018/05/27 v1.54 Typesetting articles for the Association for
+[2018/06/10 v1.54 Typesetting articles for the Association for
 Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
@@ -2157,7 +2157,7 @@ Computing Machinery]
 \def\@mkbibcitation{\bgroup
   \def\@pages@word{\ifnum\getrefnumber{TotPages}=1\relax page\else pages\fi}%
   \def\footnotemark{}%
-  \def\\{\unskip{} \ignorespaces}%
+  \def\\{\unskip{}, \ignorespaces}%
   \def\footnote{\ClassError{\@classname}{Please do not use footnotes
       inside a \string\title{} or \string\author{} command! Use
       \string\titlenote{} or \string\authornote{} instead!}}%
