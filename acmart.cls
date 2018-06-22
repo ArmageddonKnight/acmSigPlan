@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2018/06/10 v1.54 Typesetting articles for the Association for
+[2018/06/17 v1.54 Typesetting articles for the Association for
 Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
@@ -422,6 +422,32 @@ Computing Machinery]
 \def\l@section{\@tocline{1}{0pt}{1pc}{2pc}{}}
 \def\l@subsection{\@tocline{2}{0pt}{1pc}{3pc}{}}
 \def\l@subsubsection{\@tocline{2}{0pt}{1pc}{5pc}{}}
+\def\@makefntext{\noindent\@makefnmark}
+\if@ACM@sigchiamode
+\long\def\@footnotetext#1{\marginpar{%
+    \reset@font\small
+    \interlinepenalty\interfootnotelinepenalty
+    \protected@edef\@currentlabel{%
+       \csname p@footnote\endcsname\@thefnmark
+    }%
+    \color@begingroup
+      \@makefntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}%
+    \color@endgroup}}%
+\fi
+\long\def\@mpfootnotetext#1{%
+  \global\setbox\@mpfootins\vbox{%
+    \unvbox\@mpfootins
+    \reset@font\footnotesize
+    \hsize\columnwidth
+    \@parboxrestore
+    \protected@edef\@currentlabel
+         {\csname p@mpfootnote\endcsname\@thefnmark}%
+    \color@begingroup\centering
+      \@makefntext{%
+        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}%
+    \color@endgroup}}
+\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
 \let\@footnotemark@nolink\@footnotemark
 \let\@footnotetext@nolink\@footnotetext
 \RequirePackage[bookmarksnumbered,unicode]{hyperref}
@@ -598,32 +624,6 @@ Computing Machinery]
   \color@endgroup
   \egroup
   \expandafter\@iiiparbox\@mpargs{\unvbox\@tempboxa}}
-\def\@makefntext{\noindent\@makefnmark}
-\if@ACM@sigchiamode
-\long\def\@footnotetext#1{\marginpar{%
-    \reset@font\small
-    \interlinepenalty\interfootnotelinepenalty
-    \protected@edef\@currentlabel{%
-       \csname p@footnote\endcsname\@thefnmark
-    }%
-    \color@begingroup
-      \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}%
-    \color@endgroup}}%
-\fi
-\long\def\@mpfootnotetext#1{%
-  \global\setbox\@mpfootins\vbox{%
-    \unvbox\@mpfootins
-    \reset@font\footnotesize
-    \hsize\columnwidth
-    \@parboxrestore
-    \protected@edef\@currentlabel
-         {\csname p@mpfootnote\endcsname\@thefnmark}%
-    \color@begingroup\centering
-      \@makefntext{%
-        \rule\z@\footnotesep\ignorespaces#1\@finalstrut\strutbox}%
-    \color@endgroup}}
-\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark}}}
 \def\@textbottom{\vskip \z@ \@plus 1pt}
 \let\@texttop\relax
 \RequirePackage{iftex}
