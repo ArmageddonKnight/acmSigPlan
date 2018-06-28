@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2018/06/17 v1.54 Typesetting articles for the Association for
+[2018/06/23 v1.54 Typesetting articles for the Association for
 Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
@@ -1126,7 +1126,9 @@ Computing Machinery]
   \fi
   \ifx\addresses\@empty
     \if@ACM@anonymous
-      \gdef\addresses{\@author{Anonymous Author(s)}}%
+      \gdef\addresses{\@author{Anonymous Author(s)%
+        \ifx\@acmSubmissionID\@empty\else\\Submission Id:
+          \@acmSubmissionID\fi}}%
       \gdef\authors{Anonymous Author(s)}%
     \else
       \gdef\addresses{\@author{#2}}%
@@ -1140,7 +1142,9 @@ Computing Machinery]
   \fi
   \if@ACM@anonymous
     \ifx\shortauthors\@empty
-      \gdef\shortauthors{Anon.}%
+      \gdef\shortauthors{Anon.
+        \ifx\@acmSubmissionID\@empty\else Submission Id:
+        \@acmSubmissionID\fi}%
     \fi
   \else
     \def\@tempa{#1}%
@@ -2236,7 +2240,11 @@ Computing Machinery]
     Page \thepage\ of \@startPage--\pageref*{TotPages}.%
   }
 \fi
-\def\@shortauthors{\if@ACM@anonymous Anon.\else\shortauthors\fi}
+\def\@shortauthors{%
+  \if@ACM@anonymous
+    Anon.
+    \ifx\@acmSubmissionID\@empty\else Submission Id: \@acmSubmissionID\fi
+  \else\shortauthors\fi}
 \def\@headfootfont{\sffamily}
 \fancypagestyle{standardpagestyle}{%
   \fancyhf{}%
@@ -2410,27 +2418,56 @@ Computing Machinery]
   \let\ps@myheadings\ACM@ps@myheadings
   \let\ps@headings\ACM@ps@headings}
 \AtBeginDocument{\ACM@restore@pagestyle}
-%% \changes{v1.54}{2018/05/27}{Deleted indent for subsubsection}
+\def\ACM@NRadjust#1{%
+ \begingroup
+  \expandafter\ifx\csname Sectionformat\endcsname\relax
+  % do nothing when  \Sectionformat  is unknown
+   \def\next{\endgroup #1}%
+ \else
+  \def\next{\endgroup
+   \let\realSectionformat\Sectionformat
+   \def\ACM@sect@format@{#1}%
+   \let\Sectionformat\ACM@NR@adjustedSectionformat
+ %%  next lines added 2018-06-17 to ensure section number is styled
+   \let\real@adddotafter\@adddotafter
+   \let\@adddotafter\ACM@adddotafter
+   #1{}% imposes the styles, but nullifies  \MakeUppercase
+   \let\@adddotafter\real@adddotafter
+  }%
+ \fi \next
+}
+\def\ACM@NR@adjustedSectionformat#1#2{%
+ \realSectionformat{\ACM@sect@format{#1}}{#2}%
+ \let\Sectionformat\realSectionformat}
+\DeclareRobustCommand{\ACM@sect@format}{\ACM@sect@format@}
+\def\ACM@sect@format@null#1{#1}
+\let\ACM@sect@format@\ACM@sect@format@null
+\AtBeginDocument{%
+ \expandafter\ifx\csname LTX@adddotafter\endcsname\relax
+  \let\LTX@adddotafter\@adddotafter
+ \fi
+}
+\def\ACM@adddotafter#1{\ifx\relax#1\relax\else\LTX@adddotafter{#1}\fi}
 \renewcommand\section{\@startsection{section}{1}{\z@}%
   {-.75\baselineskip \@plus -2\p@ \@minus -.2\p@}%
   {.25\baselineskip}%
-  {\@secfont}}
+  {\ACM@NRadjust\@secfont}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
   {-.75\baselineskip \@plus -2\p@ \@minus -.2\p@}%
   {.25\baselineskip}%
-  {\@subsecfont}}
+  {\ACM@NRadjust\@subsecfont}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
   {-.5\baselineskip \@plus -2\p@ \@minus -.2\p@}%
   {-3.5\p@}%
-  {\@subsubsecfont\@adddotafter}}
+  {\ACM@NRadjust{\@subsubsecfont\@adddotafter}}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent}%
   {-.5\baselineskip \@plus -2\p@ \@minus -.2\p@}%
   {-3.5\p@}%
-  {\@parfont\@adddotafter}}
+  {\ACM@NRadjust{\@parfont\@adddotafter}}}
 \renewcommand\part{\@startsection{part}{9}{\z@}%
   {-10\p@ \@plus -4\p@ \@minus -2\p@}%
   {4\p@}%
-  {\@parfont}}
+  {\ACM@NRadjust\@parfont}}
 \def\section@raggedright{\@rightskip\@flushglue
   \rightskip\@rightskip
   \leftskip\z@skip
