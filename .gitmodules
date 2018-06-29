@@ -1,3 +1,6 @@
 [submodule "acmart"]
 	path = acmart
 	url = https://github.com/borisveytsman/acmart.git
+[submodule "shared"]
+	path = shared
+	url = https://github.com/ArmageddonKnight/Latex_Includes
