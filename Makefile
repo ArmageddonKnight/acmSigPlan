@@ -25,3 +25,4 @@ style-upgrade:
 	git submodule update --init
 	cd acmart && git checkout master && git pull && make acmart.cls && \
 		cp acmart.cls ACM-Reference-Format.bst ..
+	cd shared && git checkout master && git pull
