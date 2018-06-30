@@ -1,6 +1,6 @@
 all: main.pdf
 
-INCLUDEs := ./shared/includes.tex
+INCLUDEs := ./include/packages.tex
 
 BIBTEX_FILEs := $(wildcard *.bib)
 GRAPHs := $(wildcard ./graphs/*)
