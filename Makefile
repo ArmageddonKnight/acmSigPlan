@@ -1,11 +1,11 @@
 all: main.pdf
 
-INCLUDEs     := $(wildcard ./include/*)
+PACKAGEs     := ./include/packages.tex
 BIBTEX_FILEs := $(wildcard *.bib)
 GRAPHs       := $(wildcard ./graphs/*)
 CODE_BLOCKs  := $(wildcard ./code_blocks/*)
 
-%.pdf: %.tex $(INCLUDEs) $(BIBTEX_FILEs) $(GRAPHs) $(CODE_BLOCKs)
+%.pdf: %.tex $(PACKAGEs) $(BIBTEX_FILEs) $(GRAPHs) $(CODE_BLOCKs)
 ifneq ($(BIBTEX_FILEs),)
 	pdflatex -synctex=1 -interaction=nonstopmode $<
 	bibtex $*.aux
