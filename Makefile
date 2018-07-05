@@ -1,27 +1,8 @@
-all: main.pdf
-
-PACKAGEs     := ./include/packages.tex
-BIBTEX_FILEs := $(wildcard *.bib)
-GRAPHs       := $(wildcard ./graphs/*)
-CODE_BLOCKs  := $(wildcard ./code_blocks/*)
-
-%.pdf: %.tex $(PACKAGEs) $(BIBTEX_FILEs) $(GRAPHs) $(CODE_BLOCKs)
-ifneq ($(BIBTEX_FILEs),)
-	pdflatex -synctex=1 -interaction=nonstopmode $<
-	bibtex $*.aux
-endif
-	pdflatex -synctex=1 -interaction=nonstopmode $<
-	pdflatex -synctex=1 -interaction=nonstopmode $<
-
-.PHONY: clean
-clean:
-	find . \( -name "*.aux" -o -name "*.bbl" -o -name "*.blg" -o \
-	          -name "*.log" -o -name "*.out" -o -name "*.synctex.gz" -o \
-	       \( -name "*.pdf" -a -not -path "./graphs/*" \) \) -a \( -not -path "./acmart/*" \) | xargs $(RM)
+include include/build_clean_update.mk
 
 .PHONY: update
-update:
+update: update-include
 	git submodule update --init
 	cd acmart  && git checkout master && git pull && make acmart.cls && \
 		cp acmart.cls ACM-Reference-Format.bst ..
-	cd include && git checkout master && git pull
+
