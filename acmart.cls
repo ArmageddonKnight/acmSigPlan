@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2018/06/23 v1.54 Typesetting articles for the Association for
+[2018/07/16 v1.54 Typesetting articles for the Association for
 Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
@@ -480,7 +480,9 @@ Computing Machinery]
       filecolor=ACMDarkBlue}
     \else
     \hypersetup{hidelinks}
-  \fi}
+  \fi
+  \hypersetup{pdflang={English},
+    pdfdisplaydoctitle}}
 \if@ACM@natbib
   \let\citeN\cite
   \let\cite\citep
@@ -633,9 +635,9 @@ Computing Machinery]
 \pdfglyphtounicode{f_f_i}{FB03}
 \pdfglyphtounicode{f_f_l}{FB04}
 \pdfglyphtounicode{f_i}{FB01}
-\pdfglyphtounicode{t_t}{00740074}
-\pdfglyphtounicode{f_t}{00660074}
-\pdfglyphtounicode{T_h}{00540068}
+\pdfglyphtounicode{t_t}{0074 0074}
+\pdfglyphtounicode{f_t}{0066 0074}
+\pdfglyphtounicode{T_h}{0054 0068}
 \pdfgentounicode=1
 \fi
 \RequirePackage{cmap}
@@ -651,6 +653,7 @@ Computing Machinery]
     have the newtxmath package installed.  Please upgrade your
     TeX}\@ACM@newfontsfalse}
 \if@ACM@newfonts
+  \RequirePackage[T1]{fontenc}
 \ifxetex
   \RequirePackage[tt=false]{libertine}
 \else
@@ -658,9 +661,6 @@ Computing Machinery]
 \fi
 \RequirePackage[varqu]{zi4}
 \RequirePackage[libertine]{newtxmath}
-\ifxetex\else
-  \RequirePackage[T1]{fontenc}
-\fi
 \fi
 \let\liningnums\@undefined
 \AtEndPreamble{%
@@ -1699,8 +1699,6 @@ Computing Machinery]
      \@mkbibcitation
   \fi
   \hypersetup{%
-    pdflang={English},
-    pdfdisplaydoctitle,
     pdfauthor={\authors},
     pdftitle={\@title},
     pdfsubject={\@concepts},
