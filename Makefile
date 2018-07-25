@@ -12,6 +12,6 @@ GIT_ROOT := $(shell git rev-parse --show-topleve)
 
 template-update:
 	git add -A && git commit -m "Checkpoint before template upgrade." && git push
-	cd $(DOC_ROOT) && git subtree pull \
+	cd $(GIT_ROOT) && git subtree pull \
 		--prefix=$(python -c "import os.path; print os.path.relpath('$(GIT_ROOT)', '$(DOC_ROOT)')") \
 		https://github.com/ArmageddonKnight/Acmart-Sigconf master
