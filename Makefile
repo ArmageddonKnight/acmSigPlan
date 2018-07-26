@@ -1,6 +1,6 @@
 include include/build_clean_update.mk
 
-TEMPLATE = Acmart-Sigconf
+TEMPLATE := Acmart-Sigconf
 
 .PHONY: style-update
 
