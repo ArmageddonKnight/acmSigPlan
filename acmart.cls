@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2018/07/25 v1.55 Typesetting articles for the Association for
+[2018/08/12 v1.55 Typesetting articles for the Association for
 Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
@@ -260,7 +260,7 @@ Computing Machinery]
    \def\@tempb{compress}\ifx\@tempa\@tempb
      \def\NAT@cmprs{\@ne}\fi
    \def\@tempb{nocompress}\ifx\@tempa\@tempb
-     \def\NAT@cmprs{\@z}\fi
+     \def\NAT@cmprs{\z@}\fi
    \def\@tempb{sort&compress}\ifx\@tempa\@tempb
      \def\NAT@sort{\@ne}\def\NAT@cmprs{\@ne}\fi
    \def\@tempb{mcite}\ifx\@tempa\@tempb
