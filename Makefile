@@ -28,7 +28,7 @@ template-update:
 		--prefix=$(shell python -c "import os.path; print os.path.relpath('$(DOC_ROOT)', '$(GIT_ROOT)')") \
 		https://github.com/ArmageddonKnight/$(TEMPLATE) master --squash
 
-style-update: pull-include
+style-update:
 	git submodule update --init
 	cd acmart && git checkout master && git pull && make acmart.cls && \
 		cp acmart.cls ACM-Reference-Format.bst ..
