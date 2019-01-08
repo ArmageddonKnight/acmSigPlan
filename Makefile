@@ -32,4 +32,4 @@ style-update:
 	git submodule update --init
 	cd acmart && git checkout master && git pull && make acmart.cls && \
 		cp acmart.cls ACM-Reference-Format.bst ..
-	wget -nc http://ctan.mirror.rafal.ca/macros/latex/contrib/xurl/latex/xurl.sty
+	wget http://ctan.mirror.rafal.ca/macros/latex/contrib/xurl/latex/xurl.sty -O xurl.sty
