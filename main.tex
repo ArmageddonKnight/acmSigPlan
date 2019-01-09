@@ -1,7 +1,11 @@
 \documentclass[sigconf, nonacm, 10pt]{acmart}
 
 \input{packages}
-\input{paragraph}
+
+\makeatletter
+\renewcommand{\@parfont}{\bfseries}
+\renewcommand{\@subsubsecfont}{\bfseries}
+\makeatother
 
 \title{}
 \subtitle{}
