@@ -1,3 +1,3 @@
 # Acmart-Sigconf [![CircleCI](https://circleci.com/gh/ArmageddonKnight/Acmart-Sigconf.svg?style=svg)](https://circleci.com/gh/ArmageddonKnight/Acmart-Sigconf)
 
-Latex template based on [acmart-sigconf](https://github.com/borisveytsman/acmart).
+Latex Template based on [Acmart-Sigconf](https://github.com/borisveytsman/acmart).
