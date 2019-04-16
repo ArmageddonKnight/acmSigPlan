@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2019/01/25 v1.58 Typesetting articles for the Association for
+[2019/03/29 v1.59 Typesetting articles for the Association for
 Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
@@ -857,6 +857,7 @@ Computing Machinery]
   CIE,%
   CSUR,%
   DTRAP,%
+  HEALTH,%
   IMWUT,%
   JACM,%
   JDIQ,%
@@ -875,7 +876,7 @@ Computing Machinery]
   TALLIP,%
   TAP,%
   TCPS,%
-  TDSCI,%
+  TDS,%
   TEAC,%
   TECS,%
   THRI,%
@@ -924,6 +925,10 @@ Computing Machinery]
   \def\@journalName{Digital Threats: Research and Practice}%
   \def\@journalNameShort{Digit. Threat. Res. Pract.}%
   \def\@permissionCodeOne{2576-5337}%
+\or % HEALTH
+  \def\@journalName{ACM Transactions on Computing for Healthcare}%
+  \def\@journalNameShort{ACM Trans. Comput. Healthcare}%
+  \def\@permissionCodeOne{2637-8051}%
 \or % IMWUT
   \def\@journalName{Proceedings of the ACM on Interactive, Mobile,
     Wearable and Ubiquitous Technologies}%
@@ -1001,7 +1006,7 @@ Computing Machinery]
   \def\@journalName{ACM Transactions on Applied Perception}%
 \or % TCPS
   \def\@journalName{ACM Transactions on Cyber-Physical Systems}%
-\or % TDSCI
+\or % TDS
   \def\@journalName{ACM Transactions on Data Science}%
   \def\@journalNameShort{ACM Trans. Data Sci.}%
   \def\@permissionCodeOne{2577-3224}%
@@ -1745,7 +1750,7 @@ Computing Machinery]
   \setcounter{footnote}{0}%
   \@mkabstract
   \if@ACM@printccs
-    \ifx\@concepts\@empty\else\bgroup
+  \ifx\@concepts\@empty\else\bgroup
       {\@specialsection{CCS Concepts}%
          \@concepts\par}\egroup
      \fi
@@ -1782,9 +1787,6 @@ Computing Machinery]
   \@afterheading
 }
 \def\@specialsection#1{%
-  \bgroup
-  \let\@vspace\@vspace@orig
-  \let\@vspacer\@vspacer@orig
   \ifcase\ACM@format@nr
   \relax % manuscript
     \par\medskip\small\noindent#1: %
@@ -1804,7 +1806,7 @@ Computing Machinery]
     \section*{#1}%
   \or % sigchi-a
     \section*{#1}%
-  \fi\egroup}
+    \fi}
 \def\@printtopmatter{%
   \ifx\@startPage\@empty
      \gdef\@startPage{1}%
