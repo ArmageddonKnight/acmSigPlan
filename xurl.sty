@@ -1,4 +1,4 @@
-%% $Id: xurl.sty 705 2018-01-09 08:16:14Z herbert $
+%% $Id: xurl.sty 876 2018-12-23 10:26:11Z herbert $
 %%
 %% This is file `xurl.sty',
 %%
@@ -16,24 +16,49 @@
 %%   `xurl' is a package for extended URL breaks
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{xurl}[2018/06/02 v 0.04 modify URL breaks]
+\ProvidesPackage{xurl}[2018/12/23 v 0.07 modify URL breaks]
+
+\newif\if@no@biblatex \@no@biblatexfalse
+\DeclareOption{nobiblatex}{\@no@biblatextrue}
 
 \DeclareOption*{\PassOptionsToPackage\CurrentOption{url}}
 \ProcessOptions\relax
 %
 \RequirePackage{url}
 %
+\if@no@biblatex\else
+  \@ifpackageloaded{biblatex}{%
+    \typeout{xurl: Set penalties for biblatex}%
+    \setcounter{biburllcpenalty}{100}%
+    \setcounter{biburlucpenalty}{200}%
+    \global\setcounter{biburlnumpenalty}{100}%
+  }{}       % biblatex has it's own url handling
+\fi
+%
+%\mathchardef\UrlBigBreakPenalty=100
+%\mathchardef\UrlBreakPenalty=200
+
 \def\UrlBreaks{%
   \do\/%
   \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l%
      \do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z%
   \do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L%
      \do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z%
-  \do0\do1\do2\do3\do4\do5\do6\do7\do8\do9\do=\do/\do.\do:%
-  \do\*\do\-\do\~\do\'\do\"\do\-}
+ \do\*\do\-\do\~\do\'\do\"\do\-%
+ \do0\do1\do2\do3\do4\do5\do6\do7\do8\do9\do=\do/\do.\do:%
+}
 %
-\Urlmuskip=0mu plus 0.1mu
+\def\UrlSpecials{%
+  \do\ {\Url@space}%
+  \do\%{\Url@percent}%
+  \do\^^M{\Url@space}%
+  \Url@force@Tilde
+}
+
+\Urlmuskip=0mu plus 1mu
 %
+%
+
 \endinput
 
 \def\UrlSpecials{%
@@ -100,8 +125,21 @@
   \do\~{~\penalty\UrlBreakPenalty}%
   \do\'{'\penalty\UrlBreakPenalty}%
   \do\"{"\penalty\UrlBreakPenalty}%
+  \do\0{/\penalty\UrlBreakPenalty}%
+  \do\1{/\penalty\UrlBreakPenalty}%
+  \do\2{/\penalty\UrlBreakPenalty}%
+  \do\3{/\penalty\UrlBreakPenalty}%
+  \do\4{/\penalty\UrlBreakPenalty}%
+  \do\5{/\penalty\UrlBreakPenalty}%
+  \do\6{/\penalty\UrlBreakPenalty}%
+  \do\7{/\penalty\UrlBreakPenalty}%
+  \do\8{/\penalty\UrlBreakPenalty}%
+  \do\9{/\penalty\UrlBreakPenalty}%
+  \do\={/\penalty\UrlBreakPenalty}%
+  \do\/{/\penalty\UrlBreakPenalty}%
+  \do\.{/\penalty\UrlBreakPenalty}%
+  \do\:{/\penalty\UrlBreakPenalty}%
 }
-\fi
 %
 
 
