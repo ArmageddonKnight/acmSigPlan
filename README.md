@@ -1,3 +1,4 @@
-# Acmart-Sigconf [![CircleCI](https://circleci.com/gh/ArmageddonKnight/Acmart-Sigconf.svg?style=svg)](https://circleci.com/gh/ArmageddonKnight/Acmart-Sigconf)
+# Acmart-Sigconf ![](https://github.com/ArmageddonKnight/Acmart-Sigconf/workflows/build/badge.svg)
 
-Latex Template based on [Acmart-Sigconf](https://github.com/borisveytsman/acmart)
+Double-Column Latex Template based on
+[Acmart-Sigconf](https://github.com/borisveytsman/acmart)
