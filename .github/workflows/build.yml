@@ -7,11 +7,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v1
-            - name: Install texlive-full
-              run: |
-                export DEBIAN_FRONTEND=noninteractive
-                sudo apt-get update
-                sudo apt-get install -y texlive-full make
-                sudo rm -rf /var/lib/apt/lists/*
+            - uses: armageddonknight/latex-templates@master
             - name: Build
               run: make all
