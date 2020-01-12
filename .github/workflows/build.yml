@@ -8,4 +8,3 @@ jobs:
         steps:
             - uses: actions/checkout@v1
             - uses: armageddonknight/latex-templates@master
-
