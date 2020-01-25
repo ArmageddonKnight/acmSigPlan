@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2020/01/11 v1.67 Typesetting articles for the Association for Computing Machinery]
+[2020/01/19 v1.68 Typesetting articles for the Association for Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
   \ClassWarning{\@classname}{%
@@ -1858,9 +1858,6 @@
   \@afterheading
 }
 \def\@specialsection#1{%
-  \bgroup
-  \let\@vspace\@vspace@orig
-  \let\@vspacer\@vspacer@orig
   \ifcase\ACM@format@nr
   \relax % manuscript
     \par\medskip\small\noindent#1: %
@@ -1875,13 +1872,13 @@
   \or % siggraph
     \section*{#1}%
   \or % sigplan
-     \noindent\emph{\bfseries#1.}~%
+     \noindentparagraph*{#1}%
   \or % sigchi
     \section*{#1}%
   \or % sigchi-a
     \section*{#1}%
     \fi
-  \egroup}
+}
 \def\@printtopmatter{%
   \ifx\@startPage\@empty
      \gdef\@startPage{1}%
@@ -2655,6 +2652,10 @@
   {-3.5\p@}%
   {\ACM@NRadjust{\@subsubsecfont\@adddotafter}}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\parindent}%
+  {-.5\baselineskip \@plus -2\p@ \@minus -.2\p@}%
+  {-3.5\p@}%
+  {\ACM@NRadjust{\@parfont\@adddotafter}}}
+\newcommand\noindentparagraph{\@startsection{paragraph}{4}{\z@}%
   {-.5\baselineskip \@plus -2\p@ \@minus -.2\p@}%
   {-3.5\p@}%
   {\ACM@NRadjust{\@parfont\@adddotafter}}}
