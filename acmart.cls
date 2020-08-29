@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2020/06/13 v1.72 Typesetting articles for the Association for Computing Machinery]
+[2020/08/23 v1.73 Typesetting articles for the Association for Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
   \ClassWarning{\@classname}{%
@@ -526,6 +526,7 @@
   \fi
   \hypersetup{pdflang={en},
     pdfdisplaydoctitle}}
+\RequirePackage{hyperxmp}
 \if@ACM@natbib
   \let\citeN\cite
   \let\cite\citep
@@ -698,7 +699,6 @@
   \flushbottom
 \or % sigchi-a
 \fi
-\RequirePackage{iftex}
 \ifPDFTeX
 \input{glyphtounicode}
 \pdfglyphtounicode{f_f}{FB00}
@@ -709,8 +709,8 @@
 \pdfglyphtounicode{f_t}{0066 0074}
 \pdfglyphtounicode{T_h}{0054 0068}
 \pdfgentounicode=1
-\fi
 \RequirePackage{cmap}
+\fi
 \newif\if@ACM@newfonts
 \@ACM@newfontstrue
 \IfFileExists{libertine.sty}{}{\ClassWarning{\@classname}{You do not
@@ -724,6 +724,7 @@
     TeX}\@ACM@newfontsfalse}
 \if@ACM@newfonts
   \RequirePackage[T1]{fontenc}
+  \RequirePackage[libertine]{newtxmath}
   \ifxetex
     \RequirePackage[tt=false]{libertine}
     \setmonofont[StylisticSet=3]{inconsolata}
@@ -736,7 +737,6 @@
        \RequirePackage[varqu]{zi4}
     \fi
   \fi
-  \RequirePackage[libertine]{newtxmath}
 \fi
 \let\liningnums\@undefined
 \AtEndPreamble{%
@@ -774,6 +774,14 @@
 \AtBeginEnvironment{lstlisting}{\let\@vspace\@vspace@orig
   \let\@vspacer\@vspacer@orig}
 \AtBeginEnvironment{lstlisting*}{\let\@vspace\@vspace@orig
+  \let\@vspacer\@vspacer@orig}
+\AtBeginEnvironment{minted}{\let\@vspace\@vspace@orig
+  \let\@vspacer\@vspacer@orig}
+\AtBeginEnvironment{minted*}{\let\@vspace\@vspace@orig
+  \let\@vspacer\@vspacer@orig}
+\AtBeginEnvironment{listing}{\let\@vspace\@vspace@orig
+  \let\@vspacer\@vspacer@orig}
+\AtBeginEnvironment{listing*}{\let\@vspace\@vspace@orig
   \let\@vspacer\@vspacer@orig}
 
 \RequirePackage{caption, float}
