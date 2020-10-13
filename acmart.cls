@@ -724,17 +724,19 @@
     TeX}\@ACM@newfontsfalse}
 \if@ACM@newfonts
   \RequirePackage[T1]{fontenc}
-  \RequirePackage[libertine]{newtxmath}
   \ifxetex
+    \RequirePackage[libertine]{newtxmath}
     \RequirePackage[tt=false]{libertine}
     \setmonofont[StylisticSet=3]{inconsolata}
   \else
     \ifluatex
+      \RequirePackage[libertine]{newtxmath}
       \RequirePackage[tt=false]{libertine}
       \setmonofont[StylisticSet=3]{inconsolata}
     \else
        \RequirePackage[tt=false, type1=true]{libertine}
        \RequirePackage[varqu]{zi4}
+       \RequirePackage[libertine]{newtxmath}
     \fi
   \fi
 \fi
