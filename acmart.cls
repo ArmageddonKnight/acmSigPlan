@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2020/09/13 v1.73 Typesetting articles for the Association for Computing Machinery]
+[2020/11/15 v1.75 Typesetting articles for the Association for Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
   \ClassWarning{\@classname}{%
@@ -724,6 +724,10 @@
     TeX}\@ACM@newfontsfalse}
 \if@ACM@newfonts
   \RequirePackage[T1]{fontenc}
+  % Note that the order in which packages are loaded matters,
+  % and the correct order depends on the LaTeX engine used.
+  % See https://github.com/borisveytsman/acmart/issues/402
+  % and https://github.com/borisveytsman/acmart/issues/410
   \ifxetex
     \RequirePackage[libertine]{newtxmath}
     \RequirePackage[tt=false]{libertine}
@@ -1774,8 +1778,12 @@
    \else
     \g@addto@macro\thankses{\thanks{#1}}%
    \fi}}
+\ifx\@beginmaketitlehook\@undefined
+  \let\@beginmaketitlehook\@empty
+\fi
+\def\AtBeginMaketitle{\g@addto@macro\@beginmaketitlehook}
 \newbox\mktitle@bx
-\def\maketitle{%
+\def\maketitle{\@beginmaketitlehook
   \@ACM@maketitle@typesettrue
   \if@ACM@anonymous
     % Anonymize omission of \author-s
@@ -2205,7 +2213,8 @@
   \ClassWarningNoLine{\@classname}{No city present for an affiliation}%
   \fi
   \if@ACM@countrypresent\else
-  \ClassWarningNoLine{\@classname}{No country present for an affiliation}%
+  \ClassError{\@classname}{No country present for an affiliation}{ACM
+    requires each author to indicate their country using country macro.}%
   \fi
 }
 \def\@mkauthors@i{%
