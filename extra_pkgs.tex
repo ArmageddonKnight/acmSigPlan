@@ -1,7 +1,6 @@
 \usepackage{xurl}
 \usepackage[super]{nth}
 \usepackage[ruled, noend]{algorithm2e}
-\usepackage[shortlabels, inline]{enumitem}
 % Figures and Tables
 \usepackage{booktabs, tabularx, multirow, tablefootnote}
 % Monospaced Code Blocks
@@ -9,9 +8,8 @@
 % Math Packages
 \usepackage{nicefrac}
 \usepackage{amsmath, amsthm}
-\usepackage{mathrsfs, mathtools}
 
-\lstset{ %
+\lstset{
   backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
   basicstyle=\ttfamily,            % the size of the fonts that are used for the code
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
@@ -39,11 +37,13 @@
   tabsize=4,                       % sets default tabsize to 4 spaces
 }
 
-\hypersetup{colorlinks=true,
-    linkcolor=blue,
-    urlcolor=blue,
-    citecolor=blue,
-    anchorcolor=blue}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue,
+  anchorcolor=blue
+}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{claim}[theorem]{Claim}
