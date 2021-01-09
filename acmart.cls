@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2020/11/15 v1.75 Typesetting articles for the Association for Computing Machinery]
+[2020/12/30 v1.76 Typesetting articles for the Association for Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
   \ClassWarning{\@classname}{%
@@ -1268,9 +1268,12 @@
   DC, USA}%
 \fi
 \def\acmBooktitle#1{\gdef\@acmBooktitle{#1}}
+\acmBooktitle{}
+\ifx\acmConference@name\@undefined\else
 \acmBooktitle{Proceedings of \acmConference@name
        \ifx\acmConference@name\acmConference@shortname\else
-         \ (\acmConference@shortname)\fi}
+       \ (\acmConference@shortname)\fi}
+\fi
 \def\@editorsAbbrev{(Ed.)}
 \def\@acmEditors{}
 \def\editor#1{\ifx\@acmEditors\@empty
