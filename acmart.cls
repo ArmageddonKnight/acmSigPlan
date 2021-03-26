@@ -120,6 +120,10 @@
   \PackageError{\@classname}{The option balance can be either true or
     false}}
 \ExecuteOptionsX{balance}
+\define@boolkey+{acmart.cls}[@ACM@]{pbalance}[true]{}{%
+  \PackageError{\@classname}{The option pbalance can be either true or
+    false}}
+\ExecuteOptionsX{pbalance=false}
 \define@boolkey+{acmart.cls}[@ACM@]{natbib}[true]{%
   \if@ACM@natbib
     \PackageInfo{\@classname}{Explicitly selecting natbib mode}%
@@ -1305,12 +1309,16 @@
           \@acmSubmissionID\fi}}%
       \gdef\authors{Anonymous Author(s)}%
     \else
-      \gdef\addresses{\@author{#2}}%
+      \expandafter\gdef\expandafter\addresses\expandafter{%
+        \expandafter\@author\expandafter{%
+          \csname typeset@author\the\num@authors\endcsname{#2}}}%
       \gdef\authors{#2}%
     \fi
   \else
     \if@ACM@anonymous\else
-      \g@addto@macro\addresses{\and\@author{#2}}%
+    \expandafter\g@addto@macro\expandafter\addresses\expandafter{%
+      \expandafter\and\expandafter\@author\expandafter{%
+        \csname typeset@author\the\num@authors\endcsname{#2}}}%
       \g@addto@macro\authors{\and#2}%
     \fi
   \fi
@@ -1361,7 +1369,14 @@
   \if@ACM@anonymous\else
     \g@addto@macro\addresses{\email{#1}{#2}}%
   \fi}
-\def\orcid#1{\unskip\ignorespaces}
+\def\orcid#1{\unskip\ignorespaces%
+  \IfBeginWith{#1}{http}{%
+    \expandafter\gdef\csname
+        typeset@author\the\num@authors\endcsname##1{%
+          \href{#1}{##1}}}{%
+    \expandafter\gdef\csname
+        typeset@author\the\num@authors\endcsname##1{%
+          \href{https://orcid.org/#1}{##1}}}}
 \def\authorsaddresses#1{\def\@authorsaddresses{#1}}
 \authorsaddresses{\@mkauthorsaddresses}
 \def\@titlenotes{}
@@ -2940,6 +2955,25 @@
   \popQED\endtrivlist\@endpefalse
 }
 \AtEndPreamble{%
+  \if@ACM@pbalance
+    \global\@ACM@balancefalse
+    \ifcase\ACM@format@nr
+    \relax % manuscript
+       \or % acmsmall
+       \or % acmlarge
+       \or % acmtog
+          \RequirePackage{pbalance}%
+       \or % sigconf
+          \RequirePackage{pbalance}%
+       \or % siggraph
+          \RequirePackage{pbalance}%
+       \or % sigplan
+          \RequirePackage{pbalance}%
+       \or % sigchi
+          \RequirePackage{pbalance}%
+       \or % sigchi-a
+    \fi
+  \fi
   \if@ACM@balance
     \ifcase\ACM@format@nr
     \relax % manuscript
