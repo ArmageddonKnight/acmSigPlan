@@ -1905,7 +1905,7 @@
        \else
          \@specialsection{Keywords}%
        \fi
-         \noindent\@keywords}\par\egroup
+         \noindent\@keywords\par}\egroup
    \fi
   \let\metadata@authors=\authors
   \nxandlist{, }{, }{, }\metadata@authors
