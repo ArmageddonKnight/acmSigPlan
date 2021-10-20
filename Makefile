@@ -17,6 +17,6 @@ clean:
 
 upgrade:
 	git submodule update --init
-	cd acmart && git checkout master && git pull && make acmart.cls && \
+	cd acmart && git checkout primary && git pull && make acmart.cls && \
 		cp acmart.cls ACM-Reference-Format.bst ..
 	curl http://ctan.mirror.rafal.ca/macros/latex/contrib/xurl/latex/xurl.sty -o xurl.sty
