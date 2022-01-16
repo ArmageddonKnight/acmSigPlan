@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2021/09/24 v1.80 Typesetting articles for the Association for Computing Machinery]
+[2022/01/11 v1.82 Typesetting articles for the Association for Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
   \ClassWarning{\@classname}{%
@@ -1815,6 +1815,12 @@
    \else
     \g@addto@macro\thankses{\thanks{#1}}%
    \fi}}
+\newcommand{\anon}[2][ANONYMIZED]{%
+  \if@ACM@anonymous%
+    {\color{ACMOrange}#1}%
+  \else%
+    #2%
+  \fi}
 \ifx\@beginmaketitlehook\@undefined
   \let\@beginmaketitlehook\@empty
 \fi
@@ -3074,7 +3080,7 @@
      \ifx\@tempa\@tempb\relax
        arXiv:\href{https://arxiv.org/abs/#2}{#2}%
      \else
-       arXiv:#2%
+       #1:#2%
     \fi
   \fi}
 \def\theindex{\@restonecoltrue\if@twocolumn\@restonecolfalse\fi
