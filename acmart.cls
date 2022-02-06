@@ -37,7 +37,7 @@
 %%   Right brace   \}     Tilde         \~}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{acmart}
-[2022/01/11 v1.82 Typesetting articles for the Association for Computing Machinery]
+[2022/02/05 v1.82 Typesetting articles for the Association for Computing Machinery]
 \def\@classname{acmart}
 \InputIfFileExists{acmart-preload-hook.tex}{%
   \ClassWarning{\@classname}{%
@@ -1025,6 +1025,7 @@
   \def\@journalName{Formal Aspects of Computing}%
   \def\@journalNameShort{Form. Asp. Comput.}%
   \def\@permissionCodeOne{0934-5043}%
+  \def\@permissionCodeTwo{1433-299X}%
 \or % HEALTH
   \def\@journalName{ACM Transactions on Computing for Healthcare}%
   \def\@journalNameShort{ACM Trans. Comput. Healthcare}%
@@ -1094,6 +1095,8 @@
 \or % TACO
   \def\@journalName{ACM Transactions on Architecture and Code Optimization}%
   \def\@journalNameShort{ACM Trans. Arch. Code Optim.}%
+  \def\@permissionCodeOne{1544-3566}%
+  \def\@permissionCodeTwo{1544-3973}%
 \or % TALG
   \def\@journalName{ACM Transactions on Algorithms}%
   \def\@journalNameShort{ACM Trans. Algor.}%
@@ -1188,6 +1191,7 @@
   \def\@permissionCodeOne{0730-0301}
 \or % TOIS
   \def\@journalName{ACM Transactions on Information Systems}%
+  \def\@journalNameShort{ACM Trans. Inf. Syst.}%
   \def\@permissionCodeOne{1046-8188}%
 \or % TOIT
   \def\@journalName{ACM Transactions on Internet Technology}%
@@ -1196,6 +1200,8 @@
 \or % TOMACS
   \def\@journalName{ACM Transactions on Modeling and Computer Simulation}%
   \def\@journalNameShort{ACM Trans. Model. Comput. Simul.}%
+  \def\@permissionCodeOne{1049-3301}%
+  \def\@permissionCodeTwo{1558-1195}%
 \or % TOMM
   \def\@journalName{ACM Transactions on Multimedia Computing, Communications and Applications}%
   \def\@journalNameShort{ACM Trans. Multimedia Comput. Commun. Appl.}%
