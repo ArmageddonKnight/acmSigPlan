@@ -793,7 +793,7 @@
 \RequirePackage{cmap}
 \fi
 \newif\if@ACM@newfonts
-\@ACM@newfontstrue
+\@ACM@newfontsfalse
 \IfFileExists{libertine.sty}{}{\ClassWarning{\@classname}{You do not
     have the libertine package installed.  Please upgrade your
     TeX}\@ACM@newfontsfalse}

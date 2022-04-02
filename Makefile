@@ -15,5 +15,6 @@ clean:
 
 upgrade:
 	git submodule update --init
-	cd acmart && git checkout primary && git pull && make acmart.cls && \
-		cp acmart.cls ACM-Reference-Format.bst ..
+	cd acmart && git checkout primary && git pull && make acmart.cls
+	cp acmart.cls ACM-Reference-Format.bst ..
+	sed -i 's/\@ACM@newfontstrue/\@ACM@newfontsfalse/g' acmart.cls
