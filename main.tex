@@ -2,18 +2,19 @@
 
 \settopmatter{printfolios=true}  % page numbers
 
+\let\Bbbk\relax
 \input{extra_pkgs}
-\usepackage[tt=false, type1=true]{libertine}
+
+\renewcommand{\sfdefault}{phv}
+\DeclareSymbolFont{operators}{OT1}{cmr}{m}{n}
+\DeclareSymbolFont{letters}  {OML}{cmm}{m}{it}
 
 \title{}
 \subtitle{}
 
 \author{Bojian Zheng}
 \affiliation{
-  \institution{
-    Department of Computer Science \\
-    University of Toronto
-  }
+  \institution{University of Toronto}
   \country{}
 }
 \email{bojian@cs.toronto.edu}
