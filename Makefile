@@ -14,7 +14,4 @@ clean:
 		   -name "*.synctex.gz" \) | xargs $(RM)
 
 upgrade:
-	git submodule update --init
-	cd acmart && git checkout primary && git pull && make acmart.cls
-	cp acmart.cls ACM-Reference-Format.bst ..
-	sed -i 's/\@ACM@newfontstrue/\@ACM@newfontsfalse/g' acmart.cls
+	curl -O https://raw.githubusercontent.com/borisveytsman/acmart/primary/ACM-Reference-Format.bst
